@@ -3,17 +3,19 @@ package com.engeto.restaurant;
 import java.math.BigDecimal;
 import java.time.LocalTime;
 
-public class Repertoire {
+public class Dish {
     private String title;
     private BigDecimal price;
     private LocalTime preparationTime;
+    private String mainImage;
     private String images;
     private Category category;
 
-    public Repertoire(String title, BigDecimal price, LocalTime preparationTime, String images, Category category) {
+    public Dish(String title, BigDecimal price, LocalTime preparationTime, String mainImage, String images, Category category) {
         this.title = title;
         this.price = price;
         this.preparationTime = preparationTime;
+        this.mainImage = mainImage;
         this.images = images;
         this.category = category;
     }
@@ -56,5 +58,13 @@ public class Repertoire {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public String getMainImage() {
+        return mainImage;
+    }
+
+    public void setMainImage(String mainImage) {
+        this.mainImage = mainImage;
     }
 }

@@ -1,10 +1,11 @@
 package com.engeto.restaurant;
 
-public enum Menu {
-    FRENCH_FRIES("french fries"), CHICKEN("chicken"), SALMON("salmon"), TROUT("trout");
+public enum Category {
+    CHICKEN("chicken"), PASTA("pasta"), FISH("fish"),
+    PIZZA("pizza"), ATTACHMENT("attachment"), SWEET("sweet");
 
     private String description;
-    Menu(String description) {
+    Category(String description) {
         this.description = description;
     }
 
