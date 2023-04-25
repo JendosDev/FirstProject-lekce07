@@ -8,16 +8,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    public static final String DISH_FILENAME = "dish.txt";
+    public static final String DISH_FILENAME = "jidlo.txt";
     public static final String MENU_FILENAME = "menu.txt";
     public static final String ORDER_FILENAME = "orders.txt";
 
-    public static void main(String[] args) throws RestaurantException {
+    public static void main(String[] args)  {
         RestaurantList restaurantList = new RestaurantList();
-        restaurantList.addItemsFromDish(DISH_FILENAME);
-        restaurantList.addItemsFromMenu(MENU_FILENAME);
-        restaurantList.addItemsFromOrder(ORDER_FILENAME);
+        try {
+            restaurantList.addItemsFromDish(DISH_FILENAME);
+        } catch (RestaurantException e) {
+            System.err.println(e.getLocalizedMessage());
+        }
+        System.out.println(restaurantList.getList());
 
+        try {
+            restaurantList.addItemsFromMenu(MENU_FILENAME);
+        } catch (RestaurantException e) {
+            System.err.println(e.getLocalizedMessage());
+        }
+        try {
+            restaurantList.addItemsFromOrder(ORDER_FILENAME);
+        } catch (RestaurantException e) {
+            System.err.println(e.getLocalizedMessage());
+        }
 
 
         Dish kureci_stroganov = new Dish("Kuřecí stroganov", BigDecimal.valueOf(135.2), LocalTime.of(0, 32), "kureci-stroganov","stroganov-02", Category.CHICKEN);

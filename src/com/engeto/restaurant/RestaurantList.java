@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.RandomAccess;
 import java.util.Scanner;
 
 public class RestaurantList {
@@ -14,30 +15,25 @@ public class RestaurantList {
     List<Menu> menuList = new ArrayList<>();
     List<Order> orderList = new ArrayList<>();
 
-    public void add(Dish dish) {
-        dishList.add(dish);
-    }
-
     public void addItemsFromDish(String filename) throws RestaurantException {
         long lineNumber = 0;
-        String[] dishes = new String[0];
+        String[] dishItems = new String[0];
         String line = "";
         try (Scanner scanner = new Scanner(new BufferedReader(new FileReader(filename)))) {
             while (scanner.hasNextLine()) {
                 lineNumber++;
-                line = scanner.nextLine();
-                dishes = line.split("\t");
-                if (dishes.length != 6)
+                dishItems = line.split("\t");
+                if (dishItems.length != 5)
                     throw new RestaurantException("Nesprávný počet položek na řádku číslo: " + lineNumber);
-                Dish dish = new Dish(dishes[0], new BigDecimal(dishes[1]), LocalTime.parse(dishes[2]), dishes[3], dishes[5], Category.valueOf(dishes[4]));
+                Dish dish = new Dish(dishItems[0], new BigDecimal(dishItems[1]), LocalTime.parse(dishItems[2]), dishItems[3], dishItems[4], Category.valueOf(dishItems[5]));
                 dishList.add(dish);
-
             }
         } catch (FileNotFoundException e) {
-            throw new RestaurantException("Nepodařilo se nalézt soubor: " + filename + "!\n\"" + e.getLocalizedMessage() + "\"");
+            throw new RestaurantException("Nepodařilo se nalézt soubor: " + filename + "!\n\"" + e.getMessage() + "\"");
         } catch (NumberFormatException e) {
-            throw new RestaurantException("Špatně zadané číslo na řádku " + lineNumber + ": " + dishes[1] + "\nŘádek: " + line + "\n\"" + e.getLocalizedMessage() + "\"");
+            throw new RestaurantException("Špatně zadané číslo na řádku " + lineNumber + ": " + dishItems[1] + "\nŘádek: " + line + "\n\"" + e.getLocalizedMessage() + "\"");
         }
+
 
     }
 
@@ -49,6 +45,14 @@ public class RestaurantList {
         }
         return sum.divide(BigDecimal.valueOf(
                 dishList.size()));
+    }
+
+    public void add(Dish dish) {
+        dishList.add(dish);
+    }
+
+    public List<Dish> getList() {
+        return new ArrayList<>(dishList);
     }
 
     public void addItemsFromMenu(String filename) throws RestaurantException {

@@ -1,4 +1,2 @@
-Tika masala 157.9   0:34:21 tika-masala CHICKEN masala-01
-Quattro formaggi    182.3   18:12:10    quattro-formaggi-01 PIZZA   quattro-forma
-Filet z lososa  241.4   0:34:13 filet-losos-01  FISH    losos-filet-fish
-Pavlova dort    123.1   1:30:0  pavlova-dort SWEET   pavlova-cake
+Quattro formaggi    186	00:47:01.0	quattro-formaggi	quatr-formag	PIZZA
+Tikka masala	132	00:32:05.0	tikka-masala	tikka-masala	CHICKEN
